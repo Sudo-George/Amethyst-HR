@@ -123,7 +123,7 @@ export default function LoginPage() {
 
   return (
     <div 
-      className="min-h-screen flex items-center justify-end p-8 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center p-4 md:p-8 relative overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #0a0a0f 0%, #12121a 50%, #1a1a2e 100%)',
       }}
@@ -228,7 +228,7 @@ export default function LoginPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isOn ? 1 : 0, y: isOn ? 0 : 20 }}
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-        className="w-full max-w-sm relative z-10 mr-8"
+        className="w-full max-w-sm relative z-10"
       >
         <div 
           className="card p-6 md:p-8"

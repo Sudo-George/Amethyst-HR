@@ -34,9 +34,10 @@ const navItems = [
 interface SidebarProps {
   collapsed?: boolean
   onToggle?: () => void
+  isMobile?: boolean
 }
 
-export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
+export function Sidebar({ collapsed = false, onToggle, isMobile = false }: SidebarProps) {
   const pathname = usePathname()
   const router = useRouter()
   const { logout } = useAuthStore()
@@ -50,7 +51,10 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
   return (
     <motion.aside
       initial={false}
-      animate={{ width: collapsed ? 80 : 280 }}
+      animate={{ 
+        width: collapsed ? 80 : 280,
+        x: isMobile && collapsed ? -280 : 0
+      }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
       className="fixed left-0 top-0 h-screen bg-bg-primary/95 backdrop-blur-xl border-r border-border-glass z-50 flex flex-col"
     >

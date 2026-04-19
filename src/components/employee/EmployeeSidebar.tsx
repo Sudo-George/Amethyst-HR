@@ -84,13 +84,15 @@ const navItems: NavCategory[] = [
 
 interface EmployeeSidebarProps {
   children?: React.ReactNode
+  isMobile?: boolean
+  collapsed?: boolean
+  onToggle?: () => void
 }
 
-export default function EmployeeSidebar({ children }: EmployeeSidebarProps) {
+export default function EmployeeSidebar({ children, isMobile = false, collapsed = false, onToggle }: EmployeeSidebarProps) {
   const pathname = usePathname()
   const router = useRouter()
   const { user, logout } = useAuthStore()
-  const [collapsed, setCollapsed] = useState(false)
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
 
   // Load user profile from localStorage
@@ -126,7 +128,10 @@ export default function EmployeeSidebar({ children }: EmployeeSidebarProps) {
       {/* Glassmorphic Sidebar */}
       <motion.aside
         initial={false}
-        animate={{ width: collapsed ? 80 : 280 }}
+        animate={{ 
+          width: collapsed ? 80 : 280,
+          x: isMobile && collapsed ? -280 : 0
+        }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="fixed left-0 top-0 h-screen flex flex-col z-50"
         style={{
@@ -161,7 +166,7 @@ export default function EmployeeSidebar({ children }: EmployeeSidebarProps) {
           
           {/* Collapse Toggle */}
           <button
-            onClick={() => setCollapsed(!collapsed)}
+            onClick={onToggle}
             className="p-2 rounded-lg hover:bg-white/10 transition-colors"
           >
             {collapsed ? (
