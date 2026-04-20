@@ -1,6 +1,6 @@
 # Amethyst HR
 
-![Amethyst HR Dashboard](amethyst-security.png)
+![Amethyst HR Dashboard](public/amethyst-security.png)
 
 > Elegant, futuristic HR management system built with Next.js 14, TypeScript, and MongoDB.
 
